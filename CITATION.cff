@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you find this code useful in academic work, please cite the paper below."
+title: "Data-driven Inverse Kinematics using Laban Movement Analysis"
+type: software
+authors:
+  - family-names: "Şahin"
+    given-names: "Mehmet Akif"
+    affiliation: "Bilkent University, Department of Computer Engineering, Ankara, Türkiye"
+  - family-names: "Sonlu"
+    given-names: "Sinan"
+    affiliation: "Bilkent University, Department of Computer Engineering, Ankara, Türkiye"
+  - family-names: "Güdükbay"
+    given-names: "Uğur"
+    affiliation: "Bilkent University, Department of Computer Engineering, Ankara, Türkiye"
+keywords:
+  - "inverse kinematics"
+  - "Laban Movement Analysis"
+  - "H-Anim Humanoid Animation Specification"
+  - "deep learning"
+  - "motion synthesis"
+preferred-citation:
+  type: article
+  title: "Data-driven Inverse Kinematics using Laban Movement Analysis"
+  authors:
+    - family-names: "Şahin"
+      given-names: "Mehmet Akif"
+    - family-names: "Sonlu"
+      given-names: "Sinan"
+    - family-names: "Güdükbay"
+      given-names: "Uğur"
+  journal: "Computers & Graphics"
+  year: 2026
+  notes: "To appear; accepted at Shape Modeling International (SMI) 2026, Istanbul."

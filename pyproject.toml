@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lmaik"
+version = "0.1.0"
+description = "Data-driven inverse kinematics using Laban Movement Analysis."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Mehmet Akif Şahin" },
+    { name = "Sinan Sonlu" },
+    { name = "Uğur Güdükbay" },
+]
+keywords = [
+    "inverse kinematics",
+    "Laban Movement Analysis",
+    "H-Anim Humanoid Animation Specification",
+    "deep learning",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Graphics :: 3D Modeling",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "torch>=2.0",
+    "bvhio>=1.5",
+    "numpy",
+    "tqdm",
+]
+
+[project.optional-dependencies]
+notebooks = ["jupyter"]
+
+[project.urls]
+Paper = "https://www.smi2026.org/"
+
+[tool.setuptools]
+packages = ["source"]
