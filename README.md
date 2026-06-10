@@ -2,9 +2,9 @@
 
 Related publication:
 
-> **Data-driven Inverse Kinematics using Laban Movement Analysis**
-> Mehmet Akif Şahin, Sinan Sonlu, Uğur Güdükbay
-> *Computers & Graphics, ...
+> Mehmet Akif Şahin, Sinan Sonlu, Uğur Güdükbay,
+> "Data-driven Inverse Kinematics using Laban Movement Analysis",
+> Computers & Graphics, Vol. 138, Article No. 104643, 12 pages, August 2026.
 
 ## Overview
 
@@ -96,4 +96,18 @@ At inference time the two stages compose: sparse end-effector keyframes plus use
 Please cite this work if you find it useful:
 
 ```
+@Article{SahinSG2026,
+	author	=	{Mehmet Akif \c{S}ahin and Sinan Sonlu and U\u{g}ur G\"{u}d\"{u}kbay},
+	title = {Data-driven Inverse Kinematics using Laban Movement Analysis},
+	journal = {Computers \& Graphics},
+	volume = {138},
+	pages = {Article no. 104643, 12 pages},
+	year = {2026},
+	month	= {August},
+	issn = {0097-8493},
+	doi = {https://doi.org/10.1016/j.cag.2026.104643},
+	url = {https://www.sciencedirect.com/science/article/pii/S0097849326001147},
+	keywords = {Inverse kinematics, Laban Movement Analysis, Data-driven animation, Deep learning},
+	abstract = {Inverse Kinematics (IK) provides control over animation, facilitating the creation of full-body poses by utilizing target end-effector locations. Many approaches address the physical aspects of arranging limb configurations; however, systems that consider the psychological aspects of human motion are lacking. To this end, we introduce a quantitative translation of the qualitative concepts of Laban Movement Analysis (LMA) into computable, continuous style descriptors. Building upon this formulation, we also propose a data-driven Inverse Kinematics (IK) method that directly utilizes these LMA parameters to refine generated animations. Specifically, we refer to LMA Shape Qualities and the attitude towards the Kinesphere to control the orientation of the generated pose along the vertical and horizontal axes. Our Interpolator upsamples sparse end-effector keyframes into dense paths and modulates Time Effort at the trajectory level. Flow Effort is controlled by a pose-similarity objective that deliberately reduces pose similarity to the dataset examples. Through a perception user study, we show that the system can successfully apply LMA-based changes to the motion to express different personality traits. This data-driven system can ease the process of controlling the psychological aspect of generative animation.}
+}
 ```
