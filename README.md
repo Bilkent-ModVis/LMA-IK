@@ -6,6 +6,8 @@ Related publication:
 > "Data-driven Inverse Kinematics using Laban Movement Analysis",
 > Computers & Graphics, Vol. 138, Article No. 104643, 12 pages, August 2026.
 
+A preprint (the authors' accepted manuscript, not the final published version) is included in this repository: [`Sahin_et_al_CAG_2026_Preprint.pdf`](Sahin_et_al_CAG_2026_Preprint.pdf).
+
 ![Graphical abstract: data-driven inverse kinematics using Laban Movement Analysis](assets/graphical-abstract.png)
 
 ## Overview
