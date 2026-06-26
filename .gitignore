@@ -24,6 +24,9 @@ env/
 /results/*
 !/results/.gitkeep
 
+# PDFs (paper, graphical abstract) -- keep source PDFs out of the repo
+*.pdf
+
 # Jupyter
 .ipynb_checkpoints/
 

@@ -6,6 +6,8 @@ Related publication:
 > "Data-driven Inverse Kinematics using Laban Movement Analysis",
 > Computers & Graphics, Vol. 138, Article No. 104643, 12 pages, August 2026.
 
+![Graphical abstract: data-driven inverse kinematics using Laban Movement Analysis](assets/graphical-abstract.png)
+
 ## Overview
 
 Inverse Kinematics (IK) determines the rotational configuration of body parts that satisfies a set of target end-effector positions. Most IK systems focus on the *physical* aspects of arranging limb configurations; the *psychological* qualities of motion -- the kind of expressive content choreographers describe with Laban Movement Analysis (LMA) -- are typically left to manual key-framing.
@@ -41,6 +43,7 @@ A perception user study reported in the paper shows that the resulting system ca
 |   |-- train_synthesizer.ipynb
 |   `-- userstudy_analysis.ipynb  # perception study analysis (Tables 5-7, Fig 12)
 |
+|-- assets/                     # README figures (graphical abstract, representative image)
 |-- checkpoints/                # trained weights (interpolator.pth, synthesizer.pth)
 |-- data/                       # datasets and built cache (lma_effort.pkl)
 |-- results/                    # reproduction outputs (written by reproduce.py)
