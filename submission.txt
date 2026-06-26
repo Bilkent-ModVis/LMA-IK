@@ -1,0 +1,23 @@
+Title:   Data-driven Inverse Kinematics using Laban Movement Analysis
+Authors: Mehmet Akif Şahin, Sinan Sonlu, Uğur Güdükbay
+Venue:   Computers & Graphics (Special Section on SMI 2026)
+
+Operating system used for development and testing:
+    macOS 15 (Apple Silicon, arm64). The code also runs on Ubuntu 20.04+ and on
+    CPU/CUDA; only one OS is required for the replicability stamp.
+
+How to build and reproduce:
+    1. ./install.sh                       # creates ./.venv and installs deps
+    2. ./.venv/bin/python reproduce.py    # regenerates the representative result
+
+Representative result reproduced:
+    The LMA descriptor-effect result of paper Figs 4-8. reproduce.py runs the
+    proposed Interpolator -> Synthesizer pipeline on base motions at low vs high
+    values of each LMA style descriptor (V, H, P) and reports the measured
+    descriptor of the generated motion (high > low confirms the effect), plus
+    exports the generated full-body joint positions to results/.
+
+Weights: checkpoints/interpolator.pth and checkpoints/synthesizer.pth are
+    included in the repository.
+Dataset: obtain the LMA Effort BVH files and place the zip in data/ (see
+    data/README.md); reproduce.py extracts and caches it on first run.

@@ -11,9 +11,18 @@ dist/
 venv/
 env/
 
-# Trained model weights and dataset caches
+# Large artifacts. The trained checkpoints ARE tracked (committed below);
+# datasets, caches, and reproduction outputs are not.
 *.pth
 *.pkl
+/checkpoints/*
+!/checkpoints/README.md
+!/checkpoints/interpolator.pth
+!/checkpoints/synthesizer.pth
+/data/*
+!/data/README.md
+/results/*
+!/results/.gitkeep
 
 # Jupyter
 .ipynb_checkpoints/

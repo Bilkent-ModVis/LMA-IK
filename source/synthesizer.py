@@ -1,9 +1,10 @@
 """LSTM Synthesizer that maps dense end-effector positions to full-body rotations.
 
-See Section 3 of the paper. The architecture is a single-layer LSTM with
-hidden dimension 128 followed by a dense projector with three 512-node
-layers, ending in joint rotations expressed in the 6D representation of
-Zhou et al. (2019).
+See Section 3 of the paper. The architecture is a three-layer LSTM with
+hidden dimension 512 followed by a dense projector (a 512-node hidden layer
+with LeakyReLU and dropout), ending in joint rotations expressed in the 6D
+representation of Zhou et al. (2019). These defaults reproduce the released
+``synthesizer.pth`` checkpoint (5.62M parameters, matching Table 3).
 """
 
 import torch
@@ -22,9 +23,9 @@ class Synthesizer(nn.Module):
                  angles_dim: int,
                  positions_dim: int,
                  conditions_dim: int = 4,
-                 hidden_dim: int = 128,
+                 hidden_dim: int = 512,
                  fc_dim: int = 512,
-                 num_layers: int = 1,
+                 num_layers: int = 3,
                  dropout: float = 0.0) -> None:
         super().__init__()
         self.input_dim = positions_dim + conditions_dim
@@ -43,8 +44,7 @@ class Synthesizer(nn.Module):
         self.pose_projector = nn.Sequential(
             nn.Linear(self.hidden_dim, self.fc_dim),
             nn.LeakyReLU(),
-            nn.Linear(self.fc_dim, self.fc_dim),
-            nn.LeakyReLU(),
+            nn.Dropout(dropout),
             nn.Linear(self.fc_dim, self.angles_dim),
         )
 

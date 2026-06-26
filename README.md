@@ -38,13 +38,26 @@ A perception user study reported in the paper shows that the resulting system ca
 |
 |-- notebooks/
 |   |-- train_interpolator.ipynb
-|   `-- train_synthesizer.ipynb
+|   |-- train_synthesizer.ipynb
+|   `-- userstudy_analysis.ipynb  # perception study analysis (Tables 5-7, Fig 12)
 |
+|-- checkpoints/                # trained weights (interpolator.pth, synthesizer.pth)
+|-- data/                       # datasets and built cache (lma_effort.pkl)
+|-- results/                    # reproduction outputs (written by reproduce.py)
+|
+|-- reproduce.py                # no-parameter reproduction of the paper result
+|-- install.sh                  # vanilla-install setup (venv + dependencies)
+|-- submission.txt              # GRSI submission metadata (title / authors / OS)
+|-- LICENSE                     # MIT (first-party code)
+|-- LICENSE.pytorch3d           # BSD-3 (vendored rotation utilities)
 |-- pyproject.toml
-|-- CITATION.cff
 |-- README.md
 `-- .gitignore
 ```
+
+The trained weights in `checkpoints/` are included in the repository. The
+datasets under `data/` and the outputs in `results/` are not tracked in git; see
+`data/README.md` for where to obtain the datasets.
 
 ## Datasets
 
@@ -66,7 +79,7 @@ The following third-party libraries were used in the development of this work:
 - [tqdm](https://github.com/tqdm/tqdm)
 - [Jupyter](https://jupyter.org/)
 
-`source/rotations.py` contains rotation-representation utilities adapted from PyTorch3D and is distributed under the BSD-style license retained in the file header.
+`source/rotations.py` contains rotation-representation utilities adapted from PyTorch3D and is distributed under the BSD-3-Clause license retained in the file header and reproduced in [`LICENSE.pytorch3d`](LICENSE.pytorch3d).
 
 ## Building
 
@@ -90,6 +103,32 @@ For platform-specific CUDA or Apple Silicon wheels of PyTorch, follow the instal
 3. Open `notebooks/train_synthesizer.ipynb`, point it at the same dataset pickle, and run all cells. The `Synthesizer` is trained with the manuscript loss weights (λ\_IK=40, λ\_synth=1, λ\_V=λ\_H=λ\_P=1, λ\_R=2), AdamW + ReduceLROnPlateau, ±0.2 uniform noise on V and H, and uniformly randomized R targets. The best model is saved to `synthesizer.pth`.
 
 At inference time the two stages compose: sparse end-effector keyframes plus user-specified LMA descriptor values pass through the `Interpolator` to produce a dense 50-frame end-effector trajectory, which the `Synthesizer` then converts to full-body joint rotations.
+
+## Reproducing the paper result
+
+`reproduce.py` regenerates the LMA descriptor-effect result (paper Figs 4–8) and runs with **no parameters**:
+
+```bash
+./.venv/bin/python reproduce.py
+```
+
+It expects:
+
+- `checkpoints/interpolator.pth` and `checkpoints/synthesizer.pth` — the released model checkpoints (3.30 M and 5.62 M parameters, matching Table 3); see [`checkpoints/README.md`](checkpoints/README.md).
+- `data/extracted_fingerless-*.zip` — the LMA Effort dataset BVH files (or an already-extracted `data/extracted_fingerless/`); see [`data/README.md`](data/README.md).
+
+On the first run it extracts the dataset zip and builds the dataset cache `data/lma_effort.pkl` (one-off, a few minutes); subsequent runs take a few seconds. The script runs the full Interpolator → Synthesizer pipeline on 24 base motions at low vs. high values of each style descriptor and writes to `results/`:
+
+- `descriptor_effect.txt` / `descriptor_effect.json` — the measured V/H/P descriptor for low vs. high conditioning. A higher measured value for the high setting reproduces the systematic style change shown in Figs 5–7.
+- `motion_<D>_<low|high>.csv` — the generated full-body joint world positions (`frame, joint, x, y, z`) for one example base motion, i.e. the data underlying the low/high pose-comparison figures.
+
+## License
+
+This project is released under the [MIT License](LICENSE). The vendored
+rotation utilities in `source/rotations.py` (adapted from PyTorch3D) are under
+the BSD-3-Clause license in [`LICENSE.pytorch3d`](LICENSE.pytorch3d). All runtime
+dependencies (PyTorch, bvhio, NumPy, tqdm, Jupyter) are permissively licensed
+and free for academic use.
 
 ## Citation
 
